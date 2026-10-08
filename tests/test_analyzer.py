@@ -1,7 +1,10 @@
 import pytest
 
-from backend.services.analyzer import Status, evaluate_result
-
+from backend.services.analyzer import (
+    Status,
+    evaluate_result,
+    percent_change,
+)
 def test_value_in_range():
     assert evaluate_result(5.0, 3.9, 5.5) == Status.NORMAL
 
@@ -26,3 +29,14 @@ def test_missing_reference():
 def test_invalid_reference_raises():
     with pytest.raises(ValueError):
         evaluate_result(5.0, 5.5, 3.9)
+
+def test_percent_change_growth():
+    assert percent_change(100.0, 120.0) == 20.0
+
+
+def test_percent_change_decrease():
+    assert percent_change(100.0, 80.0) == -20.0
+
+
+def test_percent_change_with_zero_previous_value():
+    assert percent_change(0.0, 50.0) is None

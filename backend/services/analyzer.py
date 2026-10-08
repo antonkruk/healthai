@@ -1,3 +1,4 @@
+from typing import Optional
 from enum import Enum
 
 class Status(str,Enum):
@@ -27,4 +28,8 @@ def evaluate_result(
         return Status.HIGH
 
     return Status.NORMAL
+def percent_change(previous: float, current: float) -> Optional[float]:
+    if previous == 0:
+        return None
 
+    return (current - previous) / previous * 100
