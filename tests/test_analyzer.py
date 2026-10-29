@@ -1,10 +1,6 @@
 import pytest
 
-from backend.services.analyzer import (
-    Status,
-    evaluate_result,
-    percent_change,
-)
+from backend.services.analyzer import  Status, evaluate_result, percent_change
 def test_value_in_range():
     assert evaluate_result(5.0, 3.9, 5.5) == Status.NORMAL
 
